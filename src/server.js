@@ -1,7 +1,10 @@
 import express from 'express';
+import healthRoutes from './routes/healthRoutes.js';
 
 const app = express();
 const PORT = 3000;
+
+app.use("/api/health", healthRoutes);
 
 app.get("/", function(req, res){
     res.send("Multiplayer Game Server is running!");
@@ -10,7 +13,3 @@ app.get("/", function(req, res){
 app.listen(PORT, function() {
     console.log(`Server is running on port ${PORT}`);
 });
-
-app.get("/api/health", function(req, res){
-    res.json({ status: "OK", message: "Backend is running!"});
-})
